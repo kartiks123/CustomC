@@ -1,29 +1,35 @@
 import React from 'react';
-import {Text, StyleSheet, TextStyle, ViewStyle} from 'react-native';
-import {TouchableRipple} from 'react-native-paper';
+import {
+  Text,
+  StyleSheet,
+  TextStyle,
+  ViewStyle,
+  TouchableOpacity,
+} from 'react-native';
 
 interface CustomButtonProps {
   title?: string;
   buttonStyle?: ViewStyle;
   textStyle?: TextStyle;
   onPress?: () => void;
-  onLongPress?: () => void;
+  style?: ViewStyle; // New style prop
+  icon?: string;
+  mode: 'text' | 'outlined' | 'contained' | 'elevated' | 'contained-tonal';
 }
 
 const CustomButton: React.FC<CustomButtonProps> = ({
   title = 'Default Button',
-  buttonStyle,
-  textStyle,
+  buttonStyle = {},
+  textStyle = {},
   onPress,
-  onLongPress,
+  style = {},
 }) => {
   return (
-    <TouchableRipple
+    <TouchableOpacity
       onPress={onPress}
-      onLongPress={onLongPress}
-      style={[styles.button, buttonStyle]}>
+      style={[styles.button, buttonStyle, style]}>
       <Text style={[styles.buttonText, textStyle]}>{title}</Text>
-    </TouchableRipple>
+    </TouchableOpacity>
   );
 };
 
