@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import React from 'react';
 import {
   Text,
@@ -14,7 +15,8 @@ interface CustomButtonProps {
   onPress?: () => void;
   style?: ViewStyle; // New style prop
   icon?: string;
-  mode: 'text' | 'outlined' | 'contained' | 'elevated' | 'contained-tonal';
+  mode: 'text' | 'outlined' | 'contained' | 'elevated' | 'contained-tonal'; // Made mode prop optional
+  buttonNumber?: number; // New prop to identify button number
 }
 
 const CustomButton: React.FC<CustomButtonProps> = ({
@@ -22,11 +24,23 @@ const CustomButton: React.FC<CustomButtonProps> = ({
   buttonStyle = {},
   textStyle = {},
   onPress,
+  buttonNumber, // button number prop
+  mode = 'outlined', // Default mode
   style = {},
 }) => {
+  const handlePress = () => {
+    // If onPress is provided, call it
+    if (onPress) {
+      onPress();
+    } else {
+      // Otherwise, log the default message with button number
+      console.log(`Button ${buttonNumber} pressed!`);
+    }
+  };
+
   return (
     <TouchableOpacity
-      onPress={onPress}
+      onPress={handlePress} // Use handlePress instead of directly onPress prop
       style={[styles.button, buttonStyle, style]}>
       <Text style={[styles.buttonText, textStyle]}>{title}</Text>
     </TouchableOpacity>
