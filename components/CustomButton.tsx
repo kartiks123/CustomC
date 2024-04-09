@@ -1,30 +1,15 @@
 import React from 'react';
 import {Text, StyleSheet, TextStyle, ViewStyle} from 'react-native';
-import {TouchableRipple} from 'react-native-paper'; // Importing TouchableRipple from react-native-paper package for ripple effect on button press
+import {TouchableRipple} from 'react-native-paper';
 
-/*
- * CustomButtonProps is an interface that defines the props that are passed to the CustomButton component.
- * title: string; // Title of the button
- * buttonStyle: ViewStyle; // Style of the button
- * textStyle: TextStyle; // Style of the text inside the button
- * onPress: () => void; // Function to be called on button press
- * onLongPress: () => void; // Function to be called on long press
- */
 interface CustomButtonProps {
   title?: string;
   buttonStyle?: ViewStyle;
   textStyle?: TextStyle;
   onPress?: () => void;
   onLongPress?: () => void;
-  icon?: string;
-  mode: 'text' | 'outlined' | 'contained' | 'elevated' | 'contained-tonal';
 }
 
-/*
- * CustomButton is a functional component that renders a custom button with ripple effect.
- * It takes CustomButtonProps as a parameter.
- * Props are passed to the component to customize the button appearance and behavior such as title, buttonStyle, textStyle, onPress, and onLongPress.
- */
 const CustomButton: React.FC<CustomButtonProps> = ({
   title = 'Default Button',
   buttonStyle,
@@ -33,7 +18,6 @@ const CustomButton: React.FC<CustomButtonProps> = ({
   onLongPress,
 }) => {
   return (
-    // TouchableRipple is used to create a button with ripple effect on press.
     <TouchableRipple
       onPress={onPress}
       onLongPress={onLongPress}
@@ -43,7 +27,6 @@ const CustomButton: React.FC<CustomButtonProps> = ({
   );
 };
 
-// Styles for the CustomButton component
 const styles = StyleSheet.create({
   button: {
     justifyContent: 'center',
